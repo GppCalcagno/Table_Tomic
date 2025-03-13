@@ -5,7 +5,7 @@
 </div>
 
 
-Welcome to our Foosball Fun Tracker project! Designed for a friendly competition, this project celebrates our office foosball table and the vibrant culture it inspires.
+Welcome to our Foosball Tracker project! Designed for a friendly competition, this project celebrates our office foosball table and the vibrant culture it inspires.
 
 We’re dedicated to keeping track of our game records and sharing the fun moments that bring our team together. Inspired by [Playtomic](https://playerhelp.playtomic.com/hc/en-gb), we’ve developed a ranking algorithm to mimic their system and monitor our matches effectively. 
 Tournaments are on the horizon, so get ready to play, compete, and have a blast!
