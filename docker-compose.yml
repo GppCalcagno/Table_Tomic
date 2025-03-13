@@ -1,0 +1,47 @@
+# This Docker Compose file uses version 3.8 and includes a build step for the table_tomic service.
+# It also uses an .env file for environment variables and mounts the local code directory as a volume.
+# The pgAdmin service uses PGADMIN_DEFAULT_EMAIL and PGADMIN_DEFAULT_PASSWORD environment variables.
+
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  table_tomic:
+    build: ./code/table_tomic
+    container_name: table_tomic
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./code/table_tomic:/app
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
+    ports:
+      - 8090:80
+    depends_on:
+      - postgres
+    volumes:
+      - pgadmin_storage:/var/lib/pgadmin
+
+volumes:
+  pg_data:
+  pgadmin_storage:

@@ -1,0 +1,146 @@
+{% extends "base.html" %} 
+{% block title %} Home Page {% endblock %}
+
+{% block content %}
+
+<h1 class="text-center mb-4">Match Result</h1>
+<p class="quote">📣 "Questa giocata riporta Maradona dentro a un campo da calcio. Dribbla tutti, anche i cammelli del deserto. " </p>
+
+
+<h2 class="text-center mb-4">{{ message }}</h2>
+
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+    }
+
+    h1 {
+        color: #333;
+        font-size: 4rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+    }
+
+    .quote {
+        text-align: center;
+        font-size: 1.1rem;
+        font-style: italic;
+        color: #000000;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 60%;
+        margin: 0 auto;
+        border-collapse: collapse;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    th, td {
+        padding: 15px;
+        text-align: center;
+        font-size: 1.1rem;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+        text-transform: uppercase;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #ddd;
+        cursor: pointer;
+    }
+
+    td {
+        border-top: 1px solid #ddd;
+    }
+
+    .negative {
+        color: #e74c3c;
+        font-weight: bold;
+    }
+
+    .positive {
+        color: #2ecc71;
+        font-weight: bold;
+    }
+
+    .empty-row {
+        height: 20px;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .btn {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+        background-color: #218838;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Level</th>
+            <th>Delta</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>T1 GK</td>
+            <td>{{ team1_goalkeeper }}</td>
+            <td>{{ team1_goalkeeper_level }}</td>
+            <td class="{% if team1_goalkeeper_delta < 0 %}negative{% elif team1_goalkeeper_delta > 0 %}positive{% endif %}">{{ team1_goalkeeper_delta }}</td>
+        </tr>
+        <tr>
+            <td>T1 ATT</td>
+            <td>{{ team1_attacker }}</td>
+            <td>{{ team1_attacker_level }}</td>
+            <td class="{% if team1_attacker_delta < 0 %}negative{% elif team1_attacker_delta > 0 %}positive{% endif %}">{{ team1_attacker_delta }}</td>
+        </tr>
+        <tr class="empty-row"></tr>
+        <tr>
+            <td>T2 GK</td>
+            <td>{{ team2_goalkeeper }}</td>
+            <td>{{ team2_goalkeeper_level }}</td>
+            <td class="{% if team2_goalkeeper_delta < 0 %}negative{% elif team2_goalkeeper_delta > 0 %}positive{% endif %}">{{ team2_goalkeeper_delta }}</td>
+        </tr>
+        <tr>
+            <td>T2 ATT</td>
+            <td>{{ team2_attacker }}</td>
+            <td>{{ team2_attacker_level }}</td>
+            <td class="{% if team2_attacker_delta < 0 %}negative{% elif team2_attacker_delta > 0 %}positive{% endif %}">{{ team2_attacker_delta }}</td>
+        </tr>
+    </tbody>
+</table>
+
+{% endblock %}

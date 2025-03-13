@@ -1,0 +1,24 @@
+- python manage.py makemigrations
+- python manage.py migrate
+- python manage.py runserver
+
+- python manage.py createsuperuser
+    username: 
+    Email address: 
+    password: 
+
+
+docker compose -f './docker-compose.yml' up -d --build 
+docker compose exec table_tomic python manage.py
+
+docker-compose exec table_tomic python manage.py createsuperuser
+docker-compose exec table_tomic python manage.py makemigrations
+docker-compose exec table_tomic python manage.py migrate
+docker-compose exec web python manage.py migrate
+
+
+
+"""
+As of Django 3.0 you can use default createsuperuser --noinput command and set all required fields (including password) as 
+environment variables DJANGO_SUPERUSER_PASSWORD, DJANGO_SUPERUSER_USERNAME, DJANGO_SUPERUSER_EMAIL for example. --noinput flag is required.
+"""

@@ -1,0 +1,114 @@
+{% extends "base.html" %} 
+{% block title %} Home Page {% endblock %}
+{% block content %}
+
+<style>
+
+.quote {
+        text-align: center;
+        font-size: 1.1rem;
+        font-style: italic;
+        color: #000000;
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="d-flex justify-content-end mt-2">
+    <a href="{% url 'add_user' %}" class="btn btn btn-sm" style="background-color: #1181b4; color: white;font-size: 15px;">Add User</a>
+</div>
+<div class="my-4"></div>
+
+<h1 class="text-center" style="background-color: #228037; padding: 10px; color: white;">TableTomic - Orti Classificati</h1>
+<p class="quote">📣 "E facciamo calcio👉👈🤛🤛🤙🤙🤞🤙" </p>
+
+
+<div class="my-4"></div>
+
+<div class="d-flex justify-content-center">
+    <form method="post" action="/result/" class="w-100" style="max-width: 400px;">
+        {% csrf_token %}
+
+        <div class="container">
+            <div class="mb-3">
+                <h3>Team 1</h3>
+                <div class="row">
+                    <label for="team1_goalkeeper" class="col-4 fw-bold mb-1 text-end">Goalkeeper:</label>
+                    <div class="col-8">
+                        <input type="text" id="team1_goalkeeper" name="team1_goalkeeper" class="form-control form-control-sm" required>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <label for="team1_attacker" class="col-4 fw-bold mb-1 text-end">Attacker:</label>
+                    <div class="col-8">
+                        <input type="text" id="team1_attacker" name="team1_attacker" class="form-control form-control-sm" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <h3>Team 2</h3>
+                <div class="row">
+                    <label for="team2_goalkeeper" class="col-4 fw-bold mb-1 text-end">Goalkeeper:</label>
+                    <div class="col-8">
+                        <input type="text" id="team2_goalkeeper" name="team2_goalkeeper" class="form-control form-control-sm" required>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <label for="team2_attacker" class="col-4 fw-bold mb-1 text-end">Attacker:</label>
+                    <div class="col-8">
+                        <input type="text" id="team2_attacker" name="team2_attacker" class="form-control form-control-sm" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <h3 class="text-center">Game Results</h3>
+
+                <div class="row text-center">
+                    <div class="col fw-bold">Match</div>
+                    <div class="col fw-bold">Team 1</div>
+                    <div class="col fw-bold">Team 2</div>
+                </div>
+
+                <div class="row align-items-center mt-1">
+                    <div class="col text-center fw-bold">M1</div>
+                    <div class="col">
+                        <input type="number" id="match1_points_team1" name="match1_points_team1" class="form-control form-control-sm text-center" min="0" max="10" required>
+                    </div>
+
+                    <div class="col">
+                        <input type="number" id="match1_points_team2" name="match1_points_team2" class="form-control form-control-sm text-center" min="0" max="10" required>
+                    </div>
+                </div>
+
+                <div class="row align-items-center mt-1">
+                    <div class="col text-center fw-bold">M2</div>
+                    <div class="col">
+                        <input type="number" id="match2_points_team1" name="match2_points_team1" class="form-control form-control-sm text-center" min="0" max="10" >
+                    </div>
+                    <div class="col">
+                        <input type="number" id="match2_points_team2" name="match2_points_team2" class="form-control form-control-sm text-center" min="0" max="10" >
+                    </div>
+                </div>
+
+                <div class="row align-items-center mt-1">
+                    <div class="col text-center fw-bold">M3</div>
+                    <div class="col">
+                        <input type="number" id="match3_points_team1" name="match3_points_team1" class="form-control form-control-sm text-center" min="0" max="10" >
+                    </div>
+                    <div class="col">
+                        <input type="number" id="match3_points_team2" name="match3_points_team2" class="form-control form-control-sm text-center" min="0" max="10" >
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button with custom green color -->
+            <button type="submit" class="btn" style="background-color: #1203e6; color: white; width: 100%; padding: 10px; font-size: 20px; border-radius: 5px;">Submit Match</button>
+        </div>
+    </form>
+</div>
+
+
+
+
+{% endblock %}

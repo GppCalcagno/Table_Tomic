@@ -1,0 +1,119 @@
+{% extends "base.html" %} 
+{% block content %}
+
+<style>
+    /* General Page Styling */
+    body {
+        font-family: 'Arial', sans-serif;
+
+        color: #333;
+    }
+
+    
+    /* Title Styling */
+    h1 {
+        text-align: center;
+        font-size: 3rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 20px;
+        color: #2c3e50;
+    }
+    .quote {
+        text-align: center;
+        font-size: 1.1rem;
+        font-style: italic;
+        color: #000000;
+        margin-bottom: 20px;
+    }
+
+    /* Table Styling */
+    .ranking-container {
+        max-width: 700px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .table thead {
+        background: #3498db;
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .table thead th {
+        padding: 15px;
+        text-align: left;
+        font-size: 1.2rem;
+    }
+
+    .table tbody tr {
+        transition: background 0.3s ease;
+    }
+
+    .table tbody tr:nth-child(odd) {
+        background: #f9f9f9;
+    }
+
+    .table tbody tr:nth-child(even) {
+        background: #ecf0f1;
+    }
+
+    .table tbody tr:hover {
+        background: #d6eaf8;
+        cursor: pointer;
+        transform: scale(1.02);
+    }
+
+    .table td {
+        padding: 15px;
+        font-size: 1.1rem;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* Scrollable Table */
+    .scroll-container {
+        max-height: 500px;
+        overflow-y: auto;
+        border-radius: 8px;
+    }
+
+</style>
+
+<h1>Ranking</h1>
+<p class="quote">📣 "Tutti in piedi! Non c'è posto per i deboli di spirito: chi ama il calcio deve godere, gioire e se può ringraziare." </p>
+
+<div class="ranking-container">
+    <div class="scroll-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Player</th>
+                    <th>Tomic Level</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for player in players %}
+                <tr>
+                    <td>{{ player.name }}</td>
+                    <td>{{ player.tomic_level }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

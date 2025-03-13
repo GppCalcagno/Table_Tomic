@@ -1,0 +1,4 @@
+**/__pycache__/
+code/.vscode/settings.json
+code/table_tomic/db.sqlite3
+code/table_tomic/mydatabase

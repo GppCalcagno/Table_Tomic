@@ -1,0 +1,58 @@
+# Docker Compose version suitable for .app package generation in Siemens Industrial Edge App Publisher for deployment on a Siemens Industrial Edge Device
+
+# This Docker Compose file uses version 2.4 and does not include a build step for the table_tomic service.
+# It uses hardcoded environment variables and does not mount the local code directory as a volume.
+
+version: '2.4'
+
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    mem_limit: 500mb
+    restart: always
+    environment:
+      - POSTGRES_DB=table_tomic
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  table_tomic:
+  # You can't build directly when you use compose with IEAP, you need to manual build your image before using it.
+    image: table_tomic-table_tomic
+    container_name: table_tomic
+    mem_limit: 500mb
+    restart: always
+    environment:
+      - POSTGRES_DB=table_tomic
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+    depends_on:
+      - postgres
+    ports:
+      - "8000:8000"
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    mem_limit: 500mb
+    environment:
+      - PGADMIN_EMAIL=admin@admin.com
+      - PGADMIN_PASSWORD=admin
+    ports:
+      - 8090:80
+    depends_on:
+      - postgres
+    volumes:
+      - pgadmin_storage:/var/lib/pgadmin
+
+volumes:
+  pg_data:
+  pgadmin_storage:
